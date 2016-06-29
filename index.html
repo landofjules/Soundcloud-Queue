@@ -1,0 +1,101 @@
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="javascript.js"></script>
+
+  <style>
+    html, body{
+      height: 100%;
+    }
+    body{
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-image: url("https://img1.etsystatic.com/001/0/6612672/il_fullxfull.393851149_kjt9.jpg");
+    }
+    h1 {
+      font-family: Lobster, Monospace;
+    }
+    .myButton {
+      width: 85px;
+      height: 35px;
+    }
+    #album-art {
+      border:2px solid #021a40;
+      width: 100px;
+      height: 100px;
+    }
+    #playPause {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 55px;
+    }
+    .btn-group button {
+      margin: 0 7px;
+    }
+    ul {
+      list-style-type: none;
+      margin: 30px;
+      padding: 0;
+    }
+    li {
+      font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #000;
+    }
+    li:last-child {
+      border: none;
+    }
+    li a {
+      text-decoration: none;
+      color: #000;
+      display: block;
+      width: 200px;
+      -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+      -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+      -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+      -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+      transition: font-size 0.3s ease, background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>Soundcloud Queue</h1>
+
+  <div id="controlPanel" class="row">
+    <div class="col-xs-3">
+      <input id="textBox" type="text" placeholder="Put Song URL Here." required>
+    </div>
+    <div class="col-xs-4">
+      <div id="addSong" class="btn btn-block btn-success myButton">Add Song</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1">
+      <div class="btn-group" role="group">
+        <div id="playPause" class="btn btn-block btn-success myButton">&#10074;&#10074;</div>
+        <div id="skipSong" class="btn btn-block btn-danger myButton">Skip Song</div>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div id="dock">
+    <div class="row">
+      <h3 id="current-song" class="col-xs-3"></h3>
+      <img id="album-art" src="">
+    </div>
+
+    <br/>
+
+    <ul id="playlist"></ul>
+  </div>
+
+</body>
+</html>
