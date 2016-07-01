@@ -1,4 +1,4 @@
-var client_id = '340f063c670272fac27cfa67bffcafc4';
+var client_id = '';
 var songQueue = new LinkedListQueue();
 
 var currSong;
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     //initilize soundcloud API
     SC.initialize({
-        client_id: '340f063c670272fac27cfa67bffcafc4'
+        client_id: ''
     });
 
     //start pause button grey
