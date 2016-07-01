@@ -137,6 +137,7 @@ var playNextSong = function() {
         $("#current-song").html('');
         soundManager.stopAll();
         $("#album-art").attr("src", "");
+        $("#album-art").css("opacity", "0.0");
         return;
     }
 
@@ -155,6 +156,7 @@ var playNextSong = function() {
     $("#playlist").sortable('disable');
     $("#playPause").fadeTo(100, 1.0);
     $("#album-art").attr("src", albumArt);
+    $("#album-art").css("opacity", "1.0");
 };
 
 //linked list data scructure keeps track of song queue
