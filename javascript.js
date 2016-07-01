@@ -1,4 +1,4 @@
-var client_id = '';
+var client_id = '1d1479f0249a7681f9118e9b88a9b752';
 var songQueue = new LinkedListQueue();
 
 var currSong;
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     //initilize soundcloud API
     SC.initialize({
-        client_id: ''
+        client_id: '1d1479f0249a7681f9118e9b88a9b752'
     });
 
     //start pause button grey
@@ -22,7 +22,7 @@ $(document).ready(function() {
         var song_link = $("#textBox").val();
 
         //resolve track link to get track ID
-        $.get('http://api.soundcloud.com/resolve.json?url=' + song_link + '/tracks&client_id=' + client_id, function(result){
+        $.get('https://api.soundcloud.com/resolve.json?url=' + song_link + '/tracks&client_id=' + client_id, function(result){
 
             //show new song title in correct area
             if(songCount === 0) {$("#current-song").append(result.title);}
