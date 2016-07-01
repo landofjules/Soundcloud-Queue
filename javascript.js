@@ -22,7 +22,7 @@ $(document).ready(function() {
         var song_link = $("#textBox").val();
 
         //resolve track link to get track ID
-        $.get('https://api.soundcloud.com/resolve.json?url=' + song_link + '/tracks&client_id=' + client_id, function(result){
+        $.get('http://api.soundcloud.com/resolve.json?url=' + song_link + '/tracks&client_id=' + client_id, function(result){
 
             //show new song title in correct area
             if(songCount === 0) {$("#current-song").append(result.title);}
