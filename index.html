@@ -1,102 +1,57 @@
 <html>
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-  <script src="https://connect.soundcloud.com/sdk.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <script src="javascript.js"></script>
+  <head>
 
-  <style>
-    html, body{
-      height: 100%;
-    }
-    body{
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-image: url("https://img1.etsystatic.com/001/0/6612672/il_fullxfull.393851149_kjt9.jpg");
-    }
-    h1 {
-      font-family: Lobster, Monospace;
-    }
-    .myButton {
-      width: 85px;
-      height: 35px;
-    }
-    #album-art {
-      opacity: 0.0;
-      border:2px solid #021a40;
-      width: 100px;
-      height: 100px;
-    }
-    #playPause {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 33px;
-    }
-    .btn-group button {
-      margin: 0 7px;
-    }
-    ul {
-      list-style-type: none;
-      margin: 30px;
-      padding: 0;
-    }
-    li {
-      font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
-      border-bottom: 1px solid #000;
-    }
-    li:last-child {
-      border: none;
-    }
-    li a {
-      text-decoration: none;
-      color: #000;
-      display: block;
-      width: 200px;
-      -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
-      -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
-      -o-transition: font-size 0.3s ease, background-color 0.3s ease;
-      -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
-      transition: font-size 0.3s ease, background-color 0.3s ease;
-    }
-  </style>
-</head>
-<body>
-  <h1>Soundcloud Queue</h1>
+    <!-- Include Source Files -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link type='text/css' rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link type='text/css' rel='stylesheet' href='./styles.css'>
 
-  <div id="controlPanel" class="row">
-    <div class="col-xs-3">
-      <input id="textBox" type="text" placeholder="Put Song URL Here." required>
-    </div>
-    <div class="col-xs-4">
-      <div id="addSong" class="btn btn-block btn-success myButton">Add Song</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-1">
-      <div class="btn-group" role="group">
-        <div id="playPause" class="btn btn-block btn-success myButton">&#10074;&#10074;</div>
-        <div id="skipSong" class="btn btn-block btn-danger myButton">Skip Song</div>
-    </div>
-  </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='https://connect.soundcloud.com/sdk/sdk-3.1.2.js'></script>
+    <script type='text/javascript' src='queue.js'></script>
 
-  <br/>
-  <br/>
+  </head>
 
-  <div id="dock">
-    <div class="row">
-      <h3 id="current-song" class="col-xs-3"></h3>
-      <img id="album-art" src="">
+  <body>
+
+    <div id='header'>
+      <div id='title'>Soundcloud Queue</div>
     </div>
 
-    <br/>
+    <div id='bodyContainer'>
+      <div id='controlPanel'>
 
-    <ul id="playlist"></ul>
-  </div>
+        <div class='row'>
+          <div class='col-md-8'>
+            <input id='addSongInputBox' type='text' placeholder='Put Song URL Here.' required >
+          </div>
+          <div class='col-md-4'>
+            <div id='addSongButton' class='btn btn-success'></div>
+          </div>
+        </div>
 
-</body>
+        <div id='controlButtons' class='row'>
+            <div class='col-md-5'>
+              <div id='playPauseButton' class='btn btn-success play'></div>
+            </div>
+            <div class='col-md-2'></div>
+            <div class='col-md-5'>
+              <div id='skipSongButton' class='btn btn-danger'></div>
+            </div>
+        </div>
+
+      </div>
+
+      <div id='currentSongShowcase'>
+        <div id='currentSongShowcaseAlbumArt'></div>
+        <div id='currentSongShowcaseText'></div>
+      </div>
+
+      <div id='songListContainer'>
+        <ul id='songList'></ul>
+      </div>
+    </div>
+
+  </body>
 </html>

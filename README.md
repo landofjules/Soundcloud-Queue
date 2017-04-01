@@ -1,2 +1,2 @@
 # Soundcloud-Queue
-Website that allows the user to queue up songs using the Soundcloud API
+Website that allows songs to be queued up from SoundCloud.
