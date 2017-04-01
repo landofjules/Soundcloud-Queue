@@ -1,5 +1,4 @@
 # Soundcloud-Queue
-Website that allows songs to be queued up from SoundCloud.
+Website that allows songs to be queued up and played from SoundCloud.
 
-Check it out:
-https://soundcloudsongqueue.herokuapp.com
+Try it out!, just clone and open index.html
