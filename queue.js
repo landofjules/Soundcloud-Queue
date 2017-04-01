@@ -196,7 +196,6 @@
 
         }
 
-
         if(!isSongQueueEmpty()) {
 
             // get next song in queue
