@@ -79,12 +79,6 @@
                 SOUNDCLOUD_GLOBALS.$playPauseButton.click();
                 break;
 
-            case 83:
-                // s key to skip current song
-                event.preventDefault();
-                SOUNDCLOUD_GLOBALS.$skipSongButton.click();
-                break;
-
             default:
                 break;
 
@@ -146,12 +140,12 @@
 
     function onPlayPauseButtonClicked() {
 
-        // if we have a current song
-        if(SOUNDCLOUD_GLOBALS.currentSong) {
+        // if we have a current song...
+        if(SOUNDCLOUD_GLOBALS.currentSong !== null) {
             toggleSongState();
         }
 
-        // no current song, but song queue has items
+        // no current song, but song queue has items...
         else if(!isSongQueueEmpty()) {
             playNextSong();
         }
@@ -159,7 +153,7 @@
     };
 
     function onSkipSongButtonClicked() {
-        if(SOUNDCLOUD_GLOBALS.currentSong) {
+        if(SOUNDCLOUD_GLOBALS.currentSong !== null) {
             playNextSong();
         }
     };
@@ -185,10 +179,9 @@
                 SOUNDCLOUD_GLOBALS.currentSong.sound.pause();
             }
 
-            // make sure song is started at begining if played again
+            // make sure song is started at begining if played again (fixes SC SDK bug)
             SOUNDCLOUD_GLOBALS.currentSong.sound.seek(0);
             
-            // no songs in queue, so no current song
             SOUNDCLOUD_GLOBALS.currentSong = null;
 
             // hide showcase
@@ -204,7 +197,7 @@
             // when song is over...
             SOUNDCLOUD_GLOBALS.currentSong.sound.on('finish', function() {
 
-                // if currently re-aranging songs, cancel it
+                // if currently re-aranging songs, cancel drag and drop
                 SOUNDCLOUD_GLOBALS.$songList.sortable('cancel');
 
                 // start next song
@@ -215,12 +208,12 @@
             // start song
             SOUNDCLOUD_GLOBALS.currentSong.sound.play();
 
-            // make sure play button is in right state
-            setPlayPauseButton('pause');
+            // set play button to correct visual state
+            setPlayPauseButtonVisualState('pause');
 
         } else {
 
-            // grey out ctrl buttons
+            // grey out ctrl buttons when there are no songs to play
             greyOutButons();
 
         }
@@ -234,10 +227,10 @@
             // play or pause song
             if(SOUNDCLOUD_GLOBALS.currentSong.sound._isPlaying) {
                 SOUNDCLOUD_GLOBALS.currentSong.sound.pause();
-                setPlayPauseButton('play');
+                setPlayPauseButtonVisualState('play');
             } else {
                 SOUNDCLOUD_GLOBALS.currentSong.sound.play();
-                setPlayPauseButton('pause');
+                setPlayPauseButtonVisualState('pause');
             }
         } 
 
@@ -255,7 +248,7 @@
         SOUNDCLOUD_GLOBALS.$skipSongButton.fadeTo(100, 1.0);
     };
 
-    function setPlayPauseButton(newState) {
+    function setPlayPauseButtonVisualState(newState) {
 
         if(typeof newState === 'string') {
             if(newState === 'play') {
@@ -267,7 +260,7 @@
             }
         }
 
-    }
+    };
 
 
     /* Song Queue Management Functions */
@@ -282,19 +275,7 @@
         // add to song queue
         SOUNDCLOUD_GLOBALS.songQueue.push(song);
 
-        // build song list entry element
-        var songListEntry = $('<li/>', {
-            class: 'songListEntry',
-        });
-
-        // add song title to song list entry
-        $('<div/>', {
-            class: 'songListEntryText',
-            text: song.title
-        }).appendTo(songListEntry);
-
-        // and song list entry to song list
-        songListEntry.appendTo(SOUNDCLOUD_GLOBALS.$songList);
+        rebuildSongListDOM();
 
     };
 
@@ -302,9 +283,6 @@
 
         // get next song in queue
         var nextSong = SOUNDCLOUD_GLOBALS.songQueue.shift();
-
-        // get top element of song list
-        SOUNDCLOUD_GLOBALS.$songList.find('.songListEntry').first().remove();
 
         // change album art in showcase to show current song
         SOUNDCLOUD_GLOBALS.$currentSongShowcaseAlbumArt.css({
@@ -316,6 +294,8 @@
 
         // show showcase
         SOUNDCLOUD_GLOBALS.$currentSongShowcase.show();
+
+        rebuildSongListDOM();
 
         return nextSong;
 
@@ -334,5 +314,49 @@
         }
 
     };
+
+    function removeSong(index) {
+
+        // remove song from queue
+        SOUNDCLOUD_GLOBALS.songQueue.splice(index, 1);
+
+        rebuildSongListDOM();
+
+    };
+
+    function rebuildSongListDOM() {
+
+        // clear current song list DOM
+        SOUNDCLOUD_GLOBALS.$songList.empty();
+
+        // build new DOM from song queue
+        SOUNDCLOUD_GLOBALS.songQueue.forEach(function(song) {
+
+            // build song list entry element
+            var songListEntry = $('<li/>', {
+                class: 'songListEntry',
+            });
+
+            // add song title to song list entry
+            $('<div/>', {
+                class: 'songListEntryText',
+                text: song.title
+            }).appendTo(songListEntry);
+
+            // add remove song button
+            $('<div/>', {
+                class: 'removeSongButton'
+            })
+            .click(function() {
+                removeSong($(this).parent().index());
+            })
+            .appendTo(songListEntry);
+
+            // and song list entry to song list
+            songListEntry.appendTo(SOUNDCLOUD_GLOBALS.$songList);
+
+        });
+
+    };    
 
 }());

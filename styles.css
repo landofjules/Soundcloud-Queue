@@ -128,3 +128,17 @@
   padding: 0 0 0 25px;
   list-style-type: none;
 }
+
+.removeSongButton {
+  display: inline-block;
+  float: right;
+  background-image: url(./img/ic_clear_black_18px.svg);
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.removeSongButton:hover {
+  background-image: url(./img/ic_clear_grey_18px.svg);
+}
