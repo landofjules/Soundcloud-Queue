@@ -8,7 +8,7 @@
 
     $(document).ready(function() {
 
-        // initilize soundcloud API
+        // initilize soundcloud SDK
         SC.initialize({
             client_id: SOUNDCLOUD_GLOBALS.soundCloudApiClientId
         });
@@ -32,9 +32,6 @@
 
 
     function initialize() {
-
-        // start with ctrl buttons greyed out
-        greyOutButons();
 
         // hide showcase by default
         SOUNDCLOUD_GLOBALS.$currentSongShowcase.hide();
@@ -110,11 +107,13 @@
                     // stream track
                     SC.stream('/tracks/' + songId).then(function(sound) {
 
-                        // now show ctrl buttons at normal color
-                        unGreyOutButtons();
-
                         // add song to song queue
                         addSongToQueue({ 'sound': sound, 'title': songTitle, 'artist':artistName, 'albumArt': albumArt });
+
+                        // if no current song playing, play song
+                        if(SOUNDCLOUD_GLOBALS.currentSong === null) {
+                            playNextSong();
+                        }
 
                     });
 
@@ -218,12 +217,7 @@
             // set play button to correct visual state
             setPlayPauseButtonVisualState('pause');
 
-        } else {
-
-            // grey out ctrl buttons when there are no songs to play
-            greyOutButons();
-
-        }
+        } 
 
     };
 
@@ -241,18 +235,6 @@
             }
         } 
 
-    };
-
-    function greyOutButons() {
-        // fade buttons to grey
-        SOUNDCLOUD_GLOBALS.$playPauseButton.fadeTo(100, 0.3);
-        SOUNDCLOUD_GLOBALS.$skipSongButton.fadeTo(100, 0.3);
-    };
-
-    function unGreyOutButtons() {
-        // set buttons to normal color
-        SOUNDCLOUD_GLOBALS.$playPauseButton.fadeTo(100, 1.0);
-        SOUNDCLOUD_GLOBALS.$skipSongButton.fadeTo(100, 1.0);
     };
 
     function setPlayPauseButtonVisualState(newState) {

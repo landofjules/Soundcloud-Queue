@@ -2,13 +2,12 @@
 body {
   background-color: #000;
   background-image: url('./img/backgroundTexture.png');
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #header {
@@ -103,10 +102,10 @@ body {
     margin: 0 auto;
 
     background: #eee; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#eee, #aaa); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#eee, #aaa); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#eee, #aaa); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#eee, #aaa); /* Standard syntax */
+    background: -webkit-linear-gradient(#eee, #aaa);
+    background: -o-linear-gradient(#eee, #aaa);
+    background: -moz-linear-gradient(#eee, #aaa);
+    background: linear-gradient(#eee, #aaa);
     -moz-box-shadow: 0px 2px 7px rgba(0,0,0,0.25);
 
     -webkit-box-shadow: 0px 0px 25px 8px rgba(0,0,0,0.27);
@@ -154,6 +153,7 @@ body {
   text-overflow: ellipsis;
 }
 
+
 /* Song List */
 
 #songListContainer {
@@ -171,10 +171,6 @@ body {
   width: 100%;
   margin: auto;
   padding: 0;
-}
-
-.songListEntry {
-  
 }
 
 .songListEntry:nth-child(even) {
