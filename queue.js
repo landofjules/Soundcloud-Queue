@@ -105,6 +105,11 @@
                     // stream track
                     SC.stream('/tracks/' + songId).then(function(sound) {
 
+                        // hack: do not use flash as default player (blocked in chrome)
+                        if (sound.options.protocols[0] === 'rtmp') {
+                            sound.options.protocols.splice(0, 1);
+                        }
+
                         // add song to song queue
                         addSongToQueue({ 'sound': sound, 'title': songTitle, 'artist':artistName, 'albumArt': albumArt });
 
