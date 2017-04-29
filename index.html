@@ -1,23 +1,39 @@
+<!DOCTYPE html>
 <html>
   <head>
+
+    <title>SOUNDCLOUD QUEUE</title>
+    <link rel="icon" type="image/png" href="./img/favicon.ico">
 
     <!-- Include Source Files -->
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <link type='text/css' rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link type='text/css' rel="stylesheet" href="avgrund.css">
     <link type='text/css' rel='stylesheet' href='./styles.css'>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src='https://connect.soundcloud.com/sdk/sdk-3.1.2.js'></script>
-    <script type='text/javascript' src='queue.js'></script>
+    <script type="text/javascript" src="avgrund.js"></script>
+
+    <script async src="jquery.preventMacBackScroll.js"></script>
+    <script async type='text/javascript' src='queue.js'></script>
 
   </head>
 
   <body>
 
-    <div id='header'>
-      <div id='title'>Soundcloud Queue</div>
-    </div>
+    <aside id='default-popup' class='avgrund-popup'>
+      <div id='errorMessage'></div>
+      <div id='errorMessageButton'>Close</div>
+    </aside>
+
+    <article class="avgrund-contents">
+
+      <!-- Page Title -->
+      <div id='header'>
+        <div id='title'>Soundcloud Queue</div>
+      </div>
 
       <div id='controlPanel'>
 
@@ -49,7 +65,9 @@
         </div>
 
       </div> 
-    </div>   
+    </article>
+
+    <div class="avgrund-cover"></div>
 
   </body>
 </html>

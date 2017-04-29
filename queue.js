@@ -24,6 +24,8 @@
         SOUNDCLOUD_GLOBALS.$currentSongShowcaseArtist = $('#currentSongShowcaseArtist');
         SOUNDCLOUD_GLOBALS.$songList = $('#songList');
         SOUNDCLOUD_GLOBALS.$songListSpacer = $('#songListSpacer');
+        SOUNDCLOUD_GLOBALS.$errorMessage = $('#errorMessage');
+        SOUNDCLOUD_GLOBALS.$errorMessageButton = $('#errorMessageButton');
 
         // initialize page event handlers
         initialize();
@@ -43,6 +45,8 @@
         SOUNDCLOUD_GLOBALS.$playPauseButton.click(onPlayPauseButtonClicked);
 
         SOUNDCLOUD_GLOBALS.$skipSongButton.click(onSkipSongButtonClicked);
+
+        SOUNDCLOUD_GLOBALS.$errorMessageButton.click(closeDialog);
 
         // set key input listener
         $(window).keypress(handleKeyInput);
@@ -94,7 +98,7 @@
             if(songLink !== '') {
 
                 // resolve track link to get track ID
-                SC.resolve(songLink).then(function(response){
+                SC.resolve(songLink).then(function(response) {
 
                     // get info from api response
                     var albumArt = response.artwork_url.replace("large.jpg", "t300x300.jpg"); // create link for 300x300 sized album art
@@ -118,26 +122,9 @@
                             playNextSong();
                         }
 
-                    });
+                    }, handleErrors);
 
-                }, function(error) {
-                    
-                    switch(error.status) {
-                        case 403:
-                            alert('Sorry, this artists does not allow thier tracks to be streamed in 3rd party applications.');
-                            break;
-
-                        case 404:
-                            alert('Could not find track.');
-                            break
-
-                        default:
-                            alert('Something went wrong.')
-                            break;
-
-                    }
-
-                });
+                }, handleErrors);
 
                 // clear text box
                 SOUNDCLOUD_GLOBALS.$inputTextBox.val('');
@@ -253,6 +240,40 @@
 
     };
 
+    function handleErrors(error) {
+
+        switch(error.status) {
+            case 403:
+                openDialog('Sorry, this artists does not allow thier tracks to be streamed in 3rd party applications.');
+                break;
+
+            case 404:
+                openDialog('Could not find track.');
+                break
+
+            default:
+                openDialog('Something went wrong.')
+                break;
+
+        }
+
+    };
+
+
+    /* Dialog Functions */
+
+    function openDialog(message) {
+        if(Avgrund) { 
+            SOUNDCLOUD_GLOBALS.$errorMessage.text(message)
+            Avgrund.show( '#default-popup' ); 
+        }
+    };
+
+    function closeDialog() {
+        if(Avgrund) { 
+            Avgrund.hide();
+        }
+    };
 
     /* Song Queue Management Functions */
 
