@@ -19,9 +19,9 @@
       <div id='title'>Soundcloud Queue</div>
     </div>
 
-    <div id='bodyContainer'>
       <div id='controlPanel'>
 
+        <!-- Add Song Box -->
         <div class='row'>
           <div class='col-md-8'>
             <input id='addSongInputBox' type='text' placeholder='Put Song URL Here.' required >
@@ -31,27 +31,25 @@
           </div>
         </div>
 
-        <div id='controlButtons' class='row'>
-            <div class='col-md-5'>
-              <div id='playPauseButton' class='btn btn-success play'></div>
-            </div>
-            <div class='col-md-2'></div>
-            <div class='col-md-5'>
-              <div id='skipSongButton' class='btn btn-danger'></div>
-            </div>
+        <!-- Song List -->
+        <div class='row'>
+          <div id='songListSpacer'></div>
+          <div id='songListContainer'>
+          <ul id='songList'></ul>
         </div>
 
-      </div>
-
-      <div id='currentSongShowcase'>
+        <!-- Song Showcase -->
+        <div id='currentSongShowcase'>
         <div id='currentSongShowcaseAlbumArt'></div>
-        <div id='currentSongShowcaseText'></div>
-      </div>
+        <div id='currentSongShowcaseTitle'></div>
+        <div id='currentSongShowcaseArtist'></div>
+        <div id='controlButtons' class='row'>
+            <div id='playPauseButton' class='play'></div>
+            <div id='skipSongButton'></div>
+        </div>
 
-      <div id='songListContainer'>
-        <ul id='songList'></ul>
-      </div>
-    </div>
+      </div> 
+    </div>   
 
   </body>
 </html>

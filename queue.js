@@ -19,9 +19,11 @@
         SOUNDCLOUD_GLOBALS.$skipSongButton = $('#skipSongButton');
         SOUNDCLOUD_GLOBALS.$inputTextBox = $('#addSongInputBox');
         SOUNDCLOUD_GLOBALS.$currentSongShowcase = $('#currentSongShowcase');
-        SOUNDCLOUD_GLOBALS.$currentSongShowcaseText = $('#currentSongShowcaseText');
+        SOUNDCLOUD_GLOBALS.$currentSongShowcaseTitle = $('#currentSongShowcaseTitle');
         SOUNDCLOUD_GLOBALS.$currentSongShowcaseAlbumArt = $('#currentSongShowcaseAlbumArt');
+        SOUNDCLOUD_GLOBALS.$currentSongShowcaseArtist = $('#currentSongShowcaseArtist');
         SOUNDCLOUD_GLOBALS.$songList = $('#songList');
+        SOUNDCLOUD_GLOBALS.$songListSpacer = $('#songListSpacer');
 
         // initialize page event handlers
         initialize();
@@ -36,6 +38,7 @@
 
         // hide showcase by default
         SOUNDCLOUD_GLOBALS.$currentSongShowcase.hide();
+        SOUNDCLOUD_GLOBALS.$songListSpacer.hide();
 
         // add click event handlers to buttons
         SOUNDCLOUD_GLOBALS.$addSongButton.click(onAddSongButtonClicked);
@@ -96,9 +99,12 @@
                 // resolve track link to get track ID
                 SC.resolve(songLink).then(function(response){
 
+                    console.log(response);
+
                     // get info from api response
-                    var albumArt = response.artwork_url;
+                    var albumArt = response.artwork_url.replace("large.jpg", "t300x300.jpg"); // create link for 300x300 sized album art
                     var songTitle = response.title;
+                    var artistName = response.user.username;
                     var songId = response.id;
 
                     // stream track
@@ -108,7 +114,7 @@
                         unGreyOutButtons();
 
                         // add song to song queue
-                        addSongToQueue({ 'sound': sound, 'title': songTitle, 'albumArt': albumArt });
+                        addSongToQueue({ 'sound': sound, 'title': songTitle, 'artist':artistName, 'albumArt': albumArt });
 
                     });
 
@@ -186,6 +192,7 @@
 
             // hide showcase
             SOUNDCLOUD_GLOBALS.$currentSongShowcase.hide();
+            SOUNDCLOUD_GLOBALS.$songListSpacer.hide();
 
         }
 
@@ -290,10 +297,14 @@
         });
 
         // change song title in showcase
-        SOUNDCLOUD_GLOBALS.$currentSongShowcaseText.text(nextSong.title);
+        SOUNDCLOUD_GLOBALS.$currentSongShowcaseTitle.text(nextSong.title);
+
+        // change artist in showcase
+        SOUNDCLOUD_GLOBALS.$currentSongShowcaseArtist.text(nextSong.artist);
 
         // show showcase
         SOUNDCLOUD_GLOBALS.$currentSongShowcase.show();
+        SOUNDCLOUD_GLOBALS.$songListSpacer.show();
 
         rebuildSongListDOM();
 
