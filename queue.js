@@ -96,8 +96,6 @@
                 // resolve track link to get track ID
                 SC.resolve(songLink).then(function(response){
 
-                    console.log(response);
-
                     // get info from api response
                     var albumArt = response.artwork_url.replace("large.jpg", "t300x300.jpg"); // create link for 300x300 sized album art
                     var songTitle = response.title;
