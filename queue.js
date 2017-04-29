@@ -52,7 +52,7 @@
             $(this).select();
         });
 
-        // make song list drag and dropable
+        // make song list drag and dropable (jquery UI sortable)
         SOUNDCLOUD_GLOBALS.$songList.sortable({
             update: onSongListUpdate, 
             start: onSongListDragStart
@@ -176,7 +176,6 @@
 
     function playNextSong() {
 
-        // if there is a current song playing, pause it
         if(SOUNDCLOUD_GLOBALS.currentSong) {
 
             // if current song is playing, pause it
