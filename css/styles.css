@@ -1,7 +1,7 @@
 
 body {
   background-color: #000;
-  background-image: url('./img/backgroundTexture.png');
+  background-image: url('../img/backgroundTexture.png');
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -36,7 +36,7 @@ body {
   width: 100%;
   padding: 0;
   height: 40px;
-  background-image: url(./img/ic_add_white_36px.svg);
+  background-image: url(../img/ic_add_white_36px.svg);
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -73,11 +73,11 @@ body {
 }
 
 #playPauseButton.play {
-  background-image: url(./img/ic_play_arrow_black_24px.svg);
+  background-image: url(../img/ic_play_arrow_black_24px.svg);
 }
 
 #playPauseButton.pause {
-  background-image: url(./img/ic_pause_black_24px.svg);
+  background-image: url(../img/ic_pause_black_24px.svg);
 }
 
 #playPauseButton.play:hover {
@@ -93,7 +93,7 @@ body {
 #skipSongButton {
   width: 55px;
   height: 55px;
-  background-image: url(./img/ic_skip_next_black_24px.svg);
+  background-image: url(../img/ic_skip_next_black_24px.svg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 28px;
@@ -210,7 +210,7 @@ body {
 .removeSongButton {
   display: inline-block;
   float: right;
-  background-image: url(./img/ic_clear_black_18px.svg);
+  background-image: url(../img/ic_clear_black_18px.svg);
   background-repeat: no-repeat;
   background-size: 18px 18px;
   margin: 8px 8px 0 0;
@@ -219,7 +219,7 @@ body {
 }
 
 .removeSongButton:hover {
-  background-image: url(./img/ic_clear_grey_18px.svg);
+  background-image: url(../img/ic_clear_grey_18px.svg);
 }
 
 .avgrund-contents {
