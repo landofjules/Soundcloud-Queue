@@ -1,13 +1,15 @@
 
 body {
   background-color: #000;
-  background-image: url('../img/backgroundTexture.png');
+  background-image: url('../img/sqbg.jpg');
+  background-repeat: repeat-x;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-family: 'Raleway', sans-serif;
 }
 
 #header {
@@ -17,7 +19,7 @@ body {
 }
 
 #title {
-  font-family: 'Lobster', cursive;
+  font-family: 'Poiret One', sans-serif;
   font-size: 60px;
   color: #fff;
 }
@@ -30,6 +32,7 @@ body {
 #addSongInputBox {
   width: 100%;
   height: 40px;
+  font-family: 'Lato', sans-serif;
 }
 
 #addSongButton {
@@ -46,7 +49,7 @@ body {
   border-radius: 15px;
   margin: auto;
   padding: 15px;
-  background-color: #fffacd;
+  background-color: #fff1cc;
   position: relative;
 }
 
@@ -109,6 +112,7 @@ body {
 }
 
 
+
 /* Showcase */
 
 #currentSongShowcase {
@@ -161,7 +165,7 @@ body {
 
 #currentSongShowcaseArtist {
   font-size: 25px;
-  color: #000;
+  color: #444;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -189,7 +193,7 @@ body {
 }
 
 .songListEntry:nth-child(even) {
-  background-color: #eee;
+  background-color: inherit;
 }
 
 .songListEntry:nth-child(odd) {
